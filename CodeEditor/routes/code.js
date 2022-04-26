@@ -1,10 +1,17 @@
-const router=require('express').Router();
-const {uploadCode,getCode,createRoom}=require('../controllers/code');
+const router = require("express").Router();
+const {
+  uploadCode,
+  getCode,
+  createRoom,
+  createRooms,
+} = require("../controllers/code");
 
-router.post('/uploadcode',uploadCode);
+router.post("/uploadcode", uploadCode);
 
-router.get('/getcode/:codeId',getCode);
+router.get("/getcode/:codeId", getCode);
 
-router.post('/createroom',createRoom);
+router.post("/createroom", createRoom);
 
-module.exports=router;
+router.post("/createrooms", createRooms);
+
+module.exports = router;
