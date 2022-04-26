@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 
 export default function BasicTable({ rooms }) {
     return (
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} style={{ marginLeft: "20px", marginRight: "40px" }}>
             <Table aria-label="simple table">
                 <TableHead>
                     <TableRow>

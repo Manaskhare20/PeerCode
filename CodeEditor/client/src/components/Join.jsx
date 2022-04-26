@@ -117,7 +117,7 @@ export default function Album({ setRooms }) {
               pb: 6,
               height: '84vh'
             }}
-            style={{ backgroundColor: '#0c23f5', backgroundImage: 'url("https://www.transparenttextures.com/patterns/dark-matter.png")' }}
+            style={{ backgroundColor: '#e0ffff', backgroundImage: 'url("https://www.transparenttextures.com/patterns/dark-matter.png")' }}
           >
             <Container maxWidth="sm">
               <Typography
@@ -141,9 +141,9 @@ export default function Album({ setRooms }) {
                 spacing={2}
                 justifyContent="center"
               >
-                <Button variant="contained" style={{ backgroundColor: "#61004a" }} onClick={handleClickOpen}>Create Room</Button>
-                <Button variant="contained" style={{ backgroundColor: "#61004a" }} onClick={handleClickOpen3}>Create Multiple Rooms</Button>
-                <Button variant="outlined" style={{ color: "#61004a", borderColor: "#61004a" }} onClick={handleClickOpen2}>Join Room</Button>
+                <Button variant="contained" style={{ backgroundColor: "darkblack" }} onClick={handleClickOpen}>Create Room</Button>
+                <Button variant="contained" style={{ backgroundColor: "darkblack" }} onClick={handleClickOpen3}>Create Multiple Rooms</Button>
+                <Button variant="contained" style={{ backgroundColor: "darkblack" }} onClick={handleClickOpen2}>Join Room</Button>
               </Stack>
             </Container>
           </Box>
@@ -159,9 +159,9 @@ export default function Album({ setRooms }) {
         </Box>
       </ThemeProvider>
       <Dialog open={open} onClose={handleClose} >
-        <DialogTitle style={{ color: "green" }}>Create Room</DialogTitle>
+        <DialogTitle style={{ color: "black" }}>Create Room</DialogTitle>
         <DialogContent >
-          <DialogContentText style={{ color: "#eb4deb" }}>
+          <DialogContentText style={{ color: "darkblue" }}>
             To create your own room, please enter the room name
           </DialogContentText>
           <TextField
@@ -174,19 +174,19 @@ export default function Album({ setRooms }) {
             variant="standard"
             onChange={(e) => setUsername(e.target.value)}
             value={username}
-            InputLabelProps={{ style: { color: "#61004a", borderBottomColor: "#61004a" } }}
+            InputLabelProps={{ style: { color: "blue", borderBottomColor: "#61004a" } }}
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} style={{ color: "#eb9eeb" }}>Cancel</Button>
-          <Button onClick={createRoom} style={{ color: "#61004a" }}>Create</Button>
+          <Button onClick={handleClose} style={{ color: "red" }}>Cancel</Button>
+          <Button onClick={createRoom} style={{ color: "blue" }}>Create</Button>
         </DialogActions>
       </Dialog>
 
       <Dialog open={open3} onClose={handleClose3} >
-        <DialogTitle style={{ color: "green" }}>Create Multiple Rooms</DialogTitle>
+        <DialogTitle style={{ color: "black" }}>Create Multiple Rooms</DialogTitle>
         <DialogContent >
-          <DialogContentText style={{ color: "#eb4deb" }}>
+          <DialogContentText style={{ color: "darkblue" }}>
             Enter Room Name for your Class
           </DialogContentText>
           <TextField
@@ -199,11 +199,11 @@ export default function Album({ setRooms }) {
             variant="standard"
             onChange={(e) => setUsername3(e.target.value)}
             value={username3}
-            InputLabelProps={{ style: { color: "#61004a", borderBottomColor: "#61004a" } }}
+            InputLabelProps={{ style: { color: "black", borderBottomColor: "#61004a" } }}
           />
         </DialogContent>
         <DialogContent >
-          <DialogContentText style={{ color: "#eb4deb" }}>
+          <DialogContentText style={{ color: "black" }}>
             Enter Number of Rooms
           </DialogContentText>
           <TextField
@@ -220,16 +220,16 @@ export default function Album({ setRooms }) {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose3} style={{ color: "#eb9eeb" }}>Cancel</Button>
-          <Button onClick={createRoom3} style={{ color: "#61004a" }}>Create</Button>
+          <Button onClick={handleClose3} style={{ color: "red" }}>Cancel</Button>
+          <Button onClick={createRoom3} style={{ color: "blue" }}>Create</Button>
         </DialogActions>
       </Dialog>
 
 
       <Dialog open={open2} onClose={handleClose2}>
-        <DialogTitle style={{ color: "#61004a" }}>Join Room</DialogTitle>
+        <DialogTitle style={{ color: "black" }}>Join Room</DialogTitle>
         <DialogContent>
-          <DialogContentText style={{ color: "#eb4deb" }}>
+          <DialogContentText style={{ color: "black" }}>
             Enter Room ID to join a room
           </DialogContentText>
           <TextField
@@ -242,39 +242,15 @@ export default function Album({ setRooms }) {
             variant="standard"
             onChange={(e) => setRoomId(e.target.value)}
             value={roomId}
-            InputLabelProps={{ style: { color: "#61004a" } }}
+            InputLabelProps={{ style: { color: "black" } }}
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose2} style={{ color: "#eb9eeb" }}>Cancel</Button>
-          <Button onClick={() => navigate(`/room/${roomId}`)} style={{ color: "#61004a" }}>Join</Button>
+          <Button onClick={handleClose2} style={{ color: "red" }}>Cancel</Button>
+          <Button onClick={() => navigate(`/room/${roomId}`)} style={{ color: "blue" }}>Join</Button>
         </DialogActions>
       </Dialog>
 
-      <Dialog open={open2} onClose={handleClose2}>
-        <DialogTitle style={{ color: "#61004a" }}>Join Room</DialogTitle>
-        <DialogContent>
-          <DialogContentText style={{ color: "#eb4deb" }}>
-            Enter Room ID to join a room
-          </DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Room ID"
-            type="text"
-            fullWidth
-            variant="standard"
-            onChange={(e) => setRoomId(e.target.value)}
-            value={roomId}
-            InputLabelProps={{ style: { color: "#61004a" } }}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose2} style={{ color: "#eb9eeb" }}>Cancel</Button>
-          <Button onClick={() => navigate(`/room/${roomId}`)} style={{ color: "#61004a" }}>Join</Button>
-        </DialogActions>
-      </Dialog>
     </>
   );
 }
