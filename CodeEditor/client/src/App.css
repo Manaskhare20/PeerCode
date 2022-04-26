@@ -76,3 +76,8 @@ select:focus{
 ::-webkit-scrollbar-thumb:hover {
   background: #A239EA;
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

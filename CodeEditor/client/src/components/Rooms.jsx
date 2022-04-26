@@ -7,6 +7,8 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Code from '@mui/icons-material/Code';
 import Links from './Links.jsx'
+import { Link } from 'react-router-dom';
+
 const theme = createTheme();
 const Rooms = ({ rooms }) => {
     return (<>
@@ -18,9 +20,11 @@ const Rooms = ({ rooms }) => {
             }}>
                 <Toolbar>
                     <Code sx={{ mr: 2 }} />
-                    <Typography variant="h6" color="inherit" fontWeight="bold" fontFamily='Lobster, cursive' noWrap>
-                        PeerCode
-                    </Typography>
+                    <Link to='/' >
+                        <Typography variant="h6" color="inherit" fontWeight="bold" fontFamily='Lobster, cursive' noWrap>
+                            PeerCode
+                        </Typography>
+                    </Link>
                     <Typography sx={{ ml: 'auto' }} variant="h6" color="inherit" fontWeight="bold" fontFamily='Lobster, cursive' noWrap style={{ cursor: "pointer" }}
 
                     >

@@ -14,8 +14,9 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useParams, useNavigate } from "react-router-dom";
-import Tesseract from "tesseract.js";
+import { Link } from 'react-router-dom';
 
+import Tesseract from "tesseract.js";
 highlightedLangs.forEach((lang) => {
   require(`ace-builds/src-noconflict/mode-${lang}`);
   require(`ace-builds/src-noconflict/snippets/${lang}`);
@@ -261,11 +262,14 @@ const Home = () => {
               backgroundImage: `url("https://www.transparenttextures.com/patterns/blizzard.png")`,
             }}
           >
-            <img
-              src="https://i.postimg.cc/15V62DQf/PeerCode.png"
-              className="img-fluid"
-              style={{ height: "70px", marginLeft: "10px" }}
-            ></img>
+            <Link to='/' >
+              <img
+                src="https://i.postimg.cc/15V62DQf/PeerCode.png"
+                className="img-fluid"
+                style={{ height: "70px", marginLeft: "10px" }}
+              ></img>
+            </Link>
+
           </div>
           <div className="col-lg-4 col-md-4 col-sm-2 col-2" style={{
             backgroundColor: "#61004a",
