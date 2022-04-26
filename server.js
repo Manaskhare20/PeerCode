@@ -9,7 +9,7 @@ const Code = require("./models/Code");
 require("./db/conn");
 
 const app = express();
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 80;
 
 app.use(cors());
 app.use(morgan("dev"));
@@ -55,7 +55,6 @@ io.on("connection", (socket) => {
   });
   socket.on("sendOp", ({ op, roomDbId }) => {
     console.log("op ", op);
-    // socket.emit("receiveOp",{op})
     socket.to(roomDbId).emit("receiveOp", { op });
   });
   socket.on("changeExtLangSn", async ({ lng, cd, ex, roomDbId }) => {
