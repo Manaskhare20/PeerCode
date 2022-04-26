@@ -54,8 +54,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    if (window.screen.width <= 992)
-      alert("Open in a larger device for best experience!");
+
     if (roomId) {
       const config = {
         headers: {
@@ -173,20 +172,11 @@ const Home = () => {
       setTimeout(() => {
         setIsDis(false);
       }, 2000);
-      // alert("Code uploaded!");
     } catch (error) {
       console.log(error);
     }
   };
-  const copyURL = () => {
-    var r = document.createRange();
-    r.selectNode(document.getElementById("alert-dialog-title"));
-    window.getSelection().removeAllRanges();
-    window.getSelection().addRange(r);
-    document.execCommand('copy');
-    window.getSelection().removeAllRanges();
-    handleClose();
-  }
+
 
   const convertImageToText = async () => {
     const result = await Tesseract.recognize(image, "eng");
@@ -261,7 +251,7 @@ const Home = () => {
           >
             <Link to='/' >
               <img
-                src="https://i.postimg.cc/15V62DQf/PeerCode.png"
+                src="https://i.postimg.cc/h4zrBVSG/Add-a-heading-1.png"
                 className="img-fluid"
                 style={{ height: "70px", marginLeft: "10px" }}
               ></img>
@@ -551,9 +541,7 @@ const Home = () => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={copyURL} autoFocus>
-            Copy
-          </Button>
+
         </DialogActions>
       </Dialog>
     </>

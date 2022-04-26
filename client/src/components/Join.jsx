@@ -136,7 +136,7 @@ export default function Album({ setRooms }) {
               <Typography variant="h6" align="center" color="text.secondary" paragraph>
                 * A cross -platform IDE website which will provide features for live code editing and compilation along with set of tools that streamlines their workflow!
                 <br />
-                * One will be able to create documentation of their code and others will be able to view that documentation, can filter according to tags and can also be able to get suggestion of similar documentation!
+                * Students and Teachers can create Single as well as Multiple rooms at once. Peers can code in realtime in their respective rooms.
               </Typography>
               <Stack
                 sx={{ pt: 4 }}
