@@ -246,9 +246,6 @@ const Home = () => {
       handleFileRead(tempExt);
     };
     fileReader.readAsText(file);
-    // if(tempExt!==ext) alert("Please choose proper language!");
-    // else{
-    // }
   }
 
   return (
