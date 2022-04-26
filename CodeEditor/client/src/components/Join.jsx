@@ -19,13 +19,13 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Code from '@mui/icons-material/Code';
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 const theme = createTheme();
 
-export default function Album() {
+export default function Album({ setRooms }) {
   const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);
+  const [open3, setOpen3] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -33,9 +33,15 @@ export default function Album() {
   const handleClickOpen2 = () => {
     setOpen2(true);
   };
+  const handleClickOpen3 = () => {
+    setOpen3(true);
+  };
 
   const handleClose = () => {
     setOpen(false);
+  };
+  const handleClose3 = () => {
+    setOpen3(false);
   };
   const handleClose2 = () => {
     setOpen2(false);
@@ -44,6 +50,8 @@ export default function Album() {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [roomId, setRoomId] = useState("");
+  const [username3, setUsername3] = useState("");
+  const [numberRooms, setNumberRooms] = useState(0);
 
   const createRoom = async () => {
     try {
@@ -53,6 +61,28 @@ export default function Album() {
         }
       })
       navigate(`/room/${data._id}`);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const createRoom3 = async () => {
+    try {
+      const { data } = await axios.post('/api/createrooms', { username3, numberRooms }, {
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      const arr = [];
+      for (let i = 0; i < data.data.length; i++) {
+        arr.push({
+          number: i + 1,
+          _id: data.data[i]._id,
+        })
+      }
+      setRooms(arr)
+      navigate(`/rooms`);
+
 
     } catch (error) {
       console.log(error);
@@ -112,13 +142,14 @@ export default function Album() {
                 justifyContent="center"
               >
                 <Button variant="contained" style={{ backgroundColor: "#61004a" }} onClick={handleClickOpen}>Create Room</Button>
+                <Button variant="contained" style={{ backgroundColor: "#61004a" }} onClick={handleClickOpen3}>Create Multiple Rooms</Button>
                 <Button variant="outlined" style={{ color: "#61004a", borderColor: "#61004a" }} onClick={handleClickOpen2}>Join Room</Button>
               </Stack>
             </Container>
           </Box>
         </main>
-        <Box sx={{ bgcolor: 'background.paper', p: 2, height: '2' }} component="footer" style={{
-          backgroundColor: "#61004a",
+        <Box sx={{ bgcolor: 'background.paper', p: 2, height: '4' }} component="footer" style={{
+          backgroundColor: "darkblue",
           backgroundImage: `url("https://www.transparenttextures.com/patterns/blizzard.png")`,
           color: "white"
         }}>
@@ -128,7 +159,7 @@ export default function Album() {
         </Box>
       </ThemeProvider>
       <Dialog open={open} onClose={handleClose} >
-        <DialogTitle style={{ color: "#61004a" }}>Create Room</DialogTitle>
+        <DialogTitle style={{ color: "green" }}>Create Room</DialogTitle>
         <DialogContent >
           <DialogContentText style={{ color: "#eb4deb" }}>
             To create your own room, please enter the room name
@@ -149,6 +180,74 @@ export default function Album() {
         <DialogActions>
           <Button onClick={handleClose} style={{ color: "#eb9eeb" }}>Cancel</Button>
           <Button onClick={createRoom} style={{ color: "#61004a" }}>Create</Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog open={open3} onClose={handleClose3} >
+        <DialogTitle style={{ color: "green" }}>Create Multiple Rooms</DialogTitle>
+        <DialogContent >
+          <DialogContentText style={{ color: "#eb4deb" }}>
+            Enter Room Name for your Class
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Room Name"
+            type="text"
+            fullWidth
+            variant="standard"
+            onChange={(e) => setUsername3(e.target.value)}
+            value={username3}
+            InputLabelProps={{ style: { color: "#61004a", borderBottomColor: "#61004a" } }}
+          />
+        </DialogContent>
+        <DialogContent >
+          <DialogContentText style={{ color: "#eb4deb" }}>
+            Enter Number of Rooms
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Room Name"
+            type="text"
+            fullWidth
+            variant="standard"
+            onChange={(e) => setNumberRooms(e.target.value)}
+            value={numberRooms}
+            InputLabelProps={{ style: { color: "#61004a", borderBottomColor: "#61004a" } }}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose3} style={{ color: "#eb9eeb" }}>Cancel</Button>
+          <Button onClick={createRoom3} style={{ color: "#61004a" }}>Create</Button>
+        </DialogActions>
+      </Dialog>
+
+
+      <Dialog open={open2} onClose={handleClose2}>
+        <DialogTitle style={{ color: "#61004a" }}>Join Room</DialogTitle>
+        <DialogContent>
+          <DialogContentText style={{ color: "#eb4deb" }}>
+            Enter Room ID to join a room
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Room ID"
+            type="text"
+            fullWidth
+            variant="standard"
+            onChange={(e) => setRoomId(e.target.value)}
+            value={roomId}
+            InputLabelProps={{ style: { color: "#61004a" } }}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose2} style={{ color: "#eb9eeb" }}>Cancel</Button>
+          <Button onClick={() => navigate(`/room/${roomId}`)} style={{ color: "#61004a" }}>Join</Button>
         </DialogActions>
       </Dialog>
 
