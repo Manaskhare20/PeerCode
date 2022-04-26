@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 
 export default function BasicTable({ rooms }) {
     return (
-        <TableContainer component={Paper} style={{ marginLeft: "20px", marginRight: "40px" }}>
+        <TableContainer component={Paper} style={{ marginLeft: "20px", marginRight: "20px;" }}>
             <Table aria-label="simple table">
                 <TableHead>
                     <TableRow>
@@ -28,7 +28,7 @@ export default function BasicTable({ rooms }) {
                             <TableCell component="th" scope="row">
                                 {room.number}
                             </TableCell>
-                            <Link to={`/room/${room._id}`}><TableCell>Click here</TableCell></Link>
+                            <Link to={`/room/${room._id}`}><TableCell >Click here</TableCell></Link>
                         </TableRow>
                     ))}
                 </TableBody>
