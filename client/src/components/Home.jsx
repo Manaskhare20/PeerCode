@@ -3,20 +3,13 @@ import AceEditor from "react-ace";
 import axios from "axios";
 import socket from "../socket";
 import { VscRunAll } from "react-icons/vsc";
-import { BsShareFill } from 'react-icons/bs';
 import { FaUpload, FaDownload } from 'react-icons/fa';
 import { RiImageAddLine } from 'react-icons/ri';
 import { languages, highlightedLangs, themes } from "./Snippets";
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
 import { useParams, useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
-
 import Tesseract from "tesseract.js";
+
 highlightedLangs.forEach((lang) => {
   require(`ace-builds/src-noconflict/mode-${lang}`);
   require(`ace-builds/src-noconflict/snippets/${lang}`);
@@ -36,22 +29,9 @@ const Home = () => {
   const [ext, setExt] = useState("py");
   const [isDis, setIsDis] = useState(false);
   const [recLi, setRecLi] = useState([]);
-  const [linkBody, setLinkBody] = useState("");
   const [changeDef, setChangeDef] = useState(false);
   const [username, setUsername] = useState("");
   const [image, setImage] = useState(null);
-
-
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setLinkBody(window.location.href);
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   useEffect(() => {
 
@@ -290,7 +270,6 @@ const Home = () => {
               <option value="32">32</option>
               <option value="40">40</option>
             </select>
-            {/* <div className="selectWrapper"> */}
             <select
               onChange={(e) => setTh(e.target.value)}
               data-bs-toggle="tooltip"
@@ -392,9 +371,6 @@ const Home = () => {
             >
               <FaDownload />
             </button>
-            <button type="button" className="btn btn-primary theme-class px-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Share this room" onClick={handleClickOpen}>
-              <BsShareFill />
-            </button>
           </div>
         </div>
       </div>
@@ -417,7 +393,6 @@ const Home = () => {
             onChange={(e) => {
               setCode(e);
               socket.emit("enteringCode", { code: e, roomDbId: roomId });
-              // socket.emit("enteringCode",{code:e})
             }}
             name="UNIQUE_ID_OF_DIV"
             editorProps={{ $blockScrolling: true }}
@@ -500,7 +475,6 @@ const Home = () => {
             >
               <h4 style={{ overflowY: "hidden" }}>Output </h4>
               <hr />
-              {/* <text>{result}</text> */}
               <textarea
                 wrap="off"
                 spellcheck="false"
@@ -525,25 +499,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          {linkBody}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Click on the <strong>Copy</strong> button to copy URL
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
 
-        </DialogActions>
-      </Dialog>
     </>
   );
 };
