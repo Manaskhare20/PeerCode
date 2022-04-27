@@ -29,7 +29,6 @@ const Home = () => {
   const [ext, setExt] = useState("py");
   const [isDis, setIsDis] = useState(false);
   const [recLi, setRecLi] = useState([]);
-  const [changeDef, setChangeDef] = useState(false);
   const [username, setUsername] = useState("");
   const [image, setImage] = useState(null);
 
@@ -106,7 +105,6 @@ const Home = () => {
       let tempArr = languages.filter((l) => l.extension !== ex);
       tempArr.unshift(languages[ind]);
       setRecLi(tempArr);
-      setChangeDef(!changeDef);
     }
     socket.on("receivingCode", setCodeFunc);
     socket.on("receivingInp", receivingInpFunc);
@@ -302,24 +300,15 @@ const Home = () => {
               title="Language"
               className="browser-default custom-select theme-class px-3"
             >
-              {changeDef
-                ? recLi.map((l, ind) => {
-                  return (
-                    <option value={ind} key={l.extension}>
-                      {l.name}
-                    </option>
-                  );
-                })
-                : null}
-              {!changeDef
-                ? recLi.map((l, ind) => {
-                  return (
-                    <option value={ind} key={l.extension}>
-                      {l.name}
-                    </option>
-                  );
-                })
-                : null}
+              {recLi.map((l, ind) => {
+                return (
+                  <option value={ind} key={l.extension}>
+                    {l.name}
+                  </option>
+                );
+              })}
+
+
             </select>
             <button
               type="button"
