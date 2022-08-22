@@ -69,11 +69,15 @@ export default function Album({ setRooms }) {
 
   const createRoom3 = async () => {
     try {
+      if (numberRooms > 1000 || numberRooms < 0) {
+        throw "Invalid Number of Rooms";
+      }
       const { data } = await axios.post('/api/createrooms', { username3, numberRooms }, {
         headers: {
           "Content-Type": "application/json"
         }
       })
+
       const arr = [];
       for (let i = 0; i < data.data.length; i++) {
         arr.push({
@@ -207,7 +211,7 @@ export default function Album({ setRooms }) {
         </DialogContent>
         <DialogContent >
           <DialogContentText style={{ color: "black" }}>
-            Enter Number of Rooms
+            Enter Number of Rooms (Limit 1000)
           </DialogContentText>
           <TextField
             autoFocus

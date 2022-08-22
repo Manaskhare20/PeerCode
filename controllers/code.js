@@ -39,16 +39,13 @@ exports.createRoom = async (req, res) => {
 
 exports.createRooms = async (req, res) => {
   try {
-    console.log(req.body);
     let arr = [];
     for (let i = 0; i < req.body.numberRooms; i++) {
       arr.push({
         username: uuid(),
       });
     }
-    console.log(arr);
     const data = await Code.insertMany(arr);
-    console.log(data);
     res.status(201).send({ data });
   } catch (error) {
     console.log(error);
